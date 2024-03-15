@@ -1,8 +1,5 @@
 import { IconApp } from "@/assets/icons/IconApp";
-import { IconSettings } from "@/assets/icons/IconSettings";
-import { Link } from "expo-router";
 import { Stack } from "expo-router/stack";
-import { Pressable } from "react-native";
 
 export default function AppLayout() {
   return (
@@ -26,10 +23,6 @@ export default function AppLayout() {
       <Stack.Screen
         name="index"
         options={{ headerShown: true, headerTitle: "Smart P.O.S" }}
-      />
-      <Stack.Screen
-        name="settings"
-        options={{ headerShown: false, headerTitle: "PUBLISOFT" }}
       />
     </Stack>
   );

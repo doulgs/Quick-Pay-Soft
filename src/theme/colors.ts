@@ -4,7 +4,7 @@ export const colors = {
 
   black: "#0B0B0B",
   white: "#FFFFFF",
-  almostWhite: "#F0F2F3",
+  almostWhite: "rgb(242, 242, 242)",
 
   Error: "#ff5252",
   Alert: "#dba358",

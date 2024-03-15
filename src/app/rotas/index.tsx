@@ -8,7 +8,7 @@ import { Card_Modulos } from "@/components/card_modulos";
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-export default function App() {
+export default function Home() {
   return (
     <FlatList
       data={MODULOS}
