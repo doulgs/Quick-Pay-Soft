@@ -4,16 +4,10 @@ import { ThemeProps } from "@/theme";
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-function Banner() {
+export default function Mesas() {
   return (
-    <Box
-      backgroundColor="white"
-      width={"auto"}
-      height={150}
-      borderRadius={16}
-      elevation={2}
-      m={"md"}
-    ></Box>
+    <Box>
+      <Text>Mesas</Text>
+    </Box>
   );
 }
-export { Banner };

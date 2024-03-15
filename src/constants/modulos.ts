@@ -11,7 +11,7 @@ export const MODULOS: MODULOS_PROPS[] = [
   },
   {
     id: 2,
-    nome_modulo: "BALÇÃO",
+    nome_modulo: "BALCAO",
     ativo: true,
   },
   {
@@ -21,7 +21,7 @@ export const MODULOS: MODULOS_PROPS[] = [
   },
   {
     id: 4,
-    nome_modulo: "CARTÕES",
+    nome_modulo: "CARTOES",
     ativo: true,
   },
   {
@@ -31,7 +31,7 @@ export const MODULOS: MODULOS_PROPS[] = [
   },
   {
     id: 6,
-    nome_modulo: "RELATÓRIOS",
+    nome_modulo: "RELATORIOS",
     ativo: true,
   },
 ];

@@ -21,6 +21,9 @@ export default function Inicio() {
       <Link href={"/(stack)"} asChild>
         <Text>Login</Text>
       </Link>
+      <Link href={"/(stack)/CAIXA"} asChild>
+        <Text>Caixa</Text>
+      </Link>
     </Box>
   );
 }
