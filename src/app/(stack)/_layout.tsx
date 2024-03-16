@@ -48,6 +48,10 @@ export default function AppLayout() {
         name="RELATORIOS/index"
         options={{ headerShown: true, headerTitle: "RELATORIOS" }}
       />
+      <Stack.Screen
+        name="[handleGrupo2]"
+        options={{ headerShown: true, headerTitle: "ITENS" }}
+      />
     </Stack>
   );
 }
