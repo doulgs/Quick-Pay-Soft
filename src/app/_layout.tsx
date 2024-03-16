@@ -12,6 +12,9 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 
+import { SQLiteProvider } from "expo-sqlite/next";
+import { databaseInit } from "@/database/databaseInit";
+
 export default function Layout() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -28,7 +31,9 @@ export default function Layout() {
   return (
     <ThemeProvider theme={THEME}>
       <StatusBar style="light" />
-      <Slot />
+      <SQLiteProvider databaseName="quickpaysoft.db" onInit={databaseInit}>
+        <Slot />
+      </SQLiteProvider>
     </ThemeProvider>
   );
 }
