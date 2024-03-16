@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBox, createText } from "@shopify/restyle";
 import { THEME, ThemeProps } from "@/theme";
 import { Alert, Pressable } from "react-native";
@@ -21,7 +21,12 @@ interface CardModulosProps {
 }
 
 function Modulos({ data }: CardModulosProps) {
-  function handleNavigation() {
+  const [isHandlingNavigation, setIsHandlingNavigation] = useState(false);
+
+  async function handleNavigation() {
+    if (isHandlingNavigation) return;
+    setIsHandlingNavigation(true);
+
     switch (data.nome_modulo) {
       case "CAIXA":
         router.push("/(stack)/CAIXA");
@@ -51,6 +56,8 @@ function Modulos({ data }: CardModulosProps) {
           "Por Favor entre em contato com o administrador do sistema."
         );
     }
+
+    setIsHandlingNavigation(false);
   }
 
   function getIconFromModuleName(
@@ -81,7 +88,7 @@ function Modulos({ data }: CardModulosProps) {
   }
 
   return (
-    <Pressable onPress={() => handleNavigation()}>
+    <Pressable onPress={handleNavigation}>
       <Box
         m="md"
         height={150}

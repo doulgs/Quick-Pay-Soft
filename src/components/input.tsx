@@ -6,11 +6,9 @@ import { THEME, ThemeProps } from "@/theme";
 const Text = createText<ThemeProps>();
 const Box = createBox<ThemeProps>();
 
-interface Props extends TextInputProps {
-  editavel?: boolean;
-}
+interface Props extends TextInputProps {}
 
-const Input: React.FC<Props> = ({ editavel = true, ...rest }) => {
+const Input: React.FC<Props> = ({ ...rest }) => {
   return (
     <Box
       flexDirection="row"
@@ -19,11 +17,12 @@ const Input: React.FC<Props> = ({ editavel = true, ...rest }) => {
       borderWidth={1}
       backgroundColor="white"
     >
-      {editavel ? (
-        <TextInput style={styles.input} {...rest} />
-      ) : (
-        <Text style={styles.input} />
-      )}
+      <TextInput
+        style={styles.input}
+        autoCapitalize="none"
+        autoCorrect={false}
+        {...rest}
+      />
     </Box>
   );
 };

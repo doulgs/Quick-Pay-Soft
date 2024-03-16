@@ -68,22 +68,13 @@ export default function Configuracao() {
             </Text>
             {infoDevice && (
               <>
-                <Input
-                  placeholder={`UUID: ${infoDevice.uniqueId}`}
-                  editable={false}
-                />
-                <Input
-                  placeholder={`Modelo: ${infoDevice.Modelo}`}
-                  editable={false}
-                />
+                <Input placeholder={`UUID: ${infoDevice.uniqueId}`} readOnly />
+                <Input placeholder={`Modelo: ${infoDevice.Modelo}`} readOnly />
                 <Input
                   placeholder={`Plataforma: ${infoDevice.Plataforma}`}
-                  editable={false}
+                  readOnly
                 />
-                <Input
-                  placeholder={`Versão: ${infoDevice.Versao}`}
-                  editable={false}
-                />
+                <Input placeholder={`Versão: ${infoDevice.Versao}`} readOnly />
               </>
             )}
             {error && <Text>Error: {error}</Text>}
