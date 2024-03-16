@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { ScrollView, StatusBar } from "react-native";
 
 import { createBox, createText } from "@shopify/restyle";
@@ -7,11 +8,39 @@ import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 
+import {
+  obterInformacoesDispositivo,
+  InfoDispositivoProps,
+} from "@/utils/helpers/obterInformacoesDispositivo";
+
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export default function Configuracao() {
-  let infoDevice = "teste";
+  const [infoDevice, setInfoDevice] = useState<
+    InfoDispositivoProps | undefined
+  >(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    async function DadosDispositivo() {
+      try {
+        const dispositivo = await obterInformacoesDispositivo();
+        if ("infoDispositivo" in dispositivo) {
+          setInfoDevice(dispositivo.infoDispositivo);
+          setError(undefined);
+        } else if ("error" in dispositivo) {
+          setError(dispositivo.error);
+        }
+      } catch (error) {
+        console.error("Erro ao obter informações do dispositivo:", error);
+        setError(`Erro ao obter informações do dispositivo, ${error}`);
+      }
+    }
+
+    DadosDispositivo();
+  }, []);
+
   function handleCadastrarDispositivo() {}
   function handleLimparDados() {}
 
@@ -30,14 +59,37 @@ export default function Configuracao() {
             <Text fontSize={16} fontWeight="bold">
               Informações do dispositivo
             </Text>
-            <Input placeholder={`UUID: ${infoDevice}`} editable={false} />
-            <Input placeholder={`Modelo: ${infoDevice}`} editable={false} />
-            <Input placeholder={`Plataforma: ${infoDevice}`} editable={false} />
-            <Input placeholder={`Versão: ${infoDevice}`} editable={false} />
+            {infoDevice && (
+              <>
+                <Input
+                  placeholder={`UUID: ${infoDevice.uniqueId}`}
+                  editable={false}
+                />
+                <Input
+                  placeholder={`Modelo: ${infoDevice.Modelo}`}
+                  editable={false}
+                />
+                <Input
+                  placeholder={`Plataforma: ${infoDevice.Plataforma}`}
+                  editable={false}
+                />
+                <Input
+                  placeholder={`Versão: ${infoDevice.Versao}`}
+                  editable={false}
+                />
+              </>
+            )}
+            {error && <Text>Error: {error}</Text>}
 
             <Box gap="md" mt="lg">
-              <Button title="Cadastrar Dispositivo" />
-              <Button title="Limpar Banco de Dados" />
+              <Button
+                title="Cadastrar Dispositivo"
+                onPress={handleCadastrarDispositivo}
+              />
+              <Button
+                title="Limpar Banco de Dados"
+                onPress={handleLimparDados}
+              />
             </Box>
           </Box>
         </Box>

@@ -17,26 +17,26 @@ export const MODULOS: MODULOS_PROPS[] = [
   {
     id: 3,
     nome_modulo: "MESAS",
-    ativo: false,
+    ativo: true,
   },
   {
     id: 4,
     nome_modulo: "CARTOES",
-    ativo: false,
+    ativo: true,
   },
   {
     id: 5,
     nome_modulo: "PRODUTOS",
-    ativo: false,
+    ativo: true,
   },
   {
     id: 6,
     nome_modulo: "RELATORIOS",
-    ativo: false,
+    ativo: true,
   },
   // {
   //   id: 7,
   //   nome_modulo: "TESTE",
-  //   ativo: false,
+  //   ativo: true,
   // },
 ];
