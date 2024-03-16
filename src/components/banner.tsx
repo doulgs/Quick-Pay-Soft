@@ -12,7 +12,6 @@ function Banner() {
       height={150}
       borderRadius={16}
       elevation={2}
-      m={"md"}
     ></Box>
   );
 }

@@ -27,7 +27,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider theme={THEME}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <Slot />
     </ThemeProvider>
   );
