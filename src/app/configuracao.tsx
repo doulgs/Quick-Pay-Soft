@@ -3,8 +3,8 @@ import { ScrollView, StatusBar } from "react-native";
 import { createBox, createText } from "@shopify/restyle";
 import { THEME, ThemeProps } from "@/theme";
 
-import { Input } from "@/components/input";
-import { Button } from "@/components/button";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 
 const Box = createBox<ThemeProps>();
