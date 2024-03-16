@@ -12,17 +12,20 @@ import {
   obterInformacoesDispositivo,
   InfoDispositivoProps,
 } from "@/utils/helpers/obterInformacoesDispositivo";
+import { Loading } from "@/components/Loading";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export default function Configuracao() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [infoDevice, setInfoDevice] = useState<
     InfoDispositivoProps | undefined
   >(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
+    setLoading(true);
     async function DadosDispositivo() {
       try {
         const dispositivo = await obterInformacoesDispositivo();
@@ -37,12 +40,16 @@ export default function Configuracao() {
         setError(`Erro ao obter informações do dispositivo, ${error}`);
       }
     }
-
     DadosDispositivo();
+    setLoading(false);
   }, []);
 
   function handleCadastrarDispositivo() {}
   function handleLimparDados() {}
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
