@@ -15,8 +15,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="index"
         options={{
-          headerShown: true,
-          headerTitle: "Smart P.O.S",
+          headerTitle: "Publisoft",
           headerRight: () => (
             <Pressable>
               <IconSettings color="#FFF" type="preenchido" />
@@ -24,34 +23,19 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Stack.Screen
-        name="CAIXA/index"
-        options={{ headerShown: true, headerTitle: "CAIXA" }}
-      />
-      <Stack.Screen
-        name="BALCAO/index"
-        options={{ headerShown: true, headerTitle: "BALCAO" }}
-      />
-      <Stack.Screen
-        name="CARTOES/index"
-        options={{ headerShown: true, headerTitle: "CARTOES" }}
-      />
-      <Stack.Screen
-        name="MESAS/index"
-        options={{ headerShown: true, headerTitle: "MESAS" }}
-      />
+      <Stack.Screen name="CAIXA/index" options={{ headerTitle: "CAIXA" }} />
+      <Stack.Screen name="BALCAO/index" options={{ headerTitle: "BALCAO" }} />
+      <Stack.Screen name="CARTOES/index" options={{ headerTitle: "CARTOES" }} />
+      <Stack.Screen name="MESAS/index" options={{ headerTitle: "MESAS" }} />
       <Stack.Screen
         name="PRODUTOS/index"
-        options={{ headerShown: true, headerTitle: "PRODUTOS" }}
+        options={{ headerTitle: "PRODUTOS" }}
       />
       <Stack.Screen
         name="RELATORIOS/index"
-        options={{ headerShown: true, headerTitle: "RELATORIOS" }}
+        options={{ headerTitle: "RELATORIOS" }}
       />
-      <Stack.Screen
-        name="[handleGrupo2]"
-        options={{ headerShown: true, headerTitle: "ITENS" }}
-      />
+      <Stack.Screen name="[handleGrupo2]" options={{ headerTitle: "ITENS" }} />
     </Stack>
   );
 }
