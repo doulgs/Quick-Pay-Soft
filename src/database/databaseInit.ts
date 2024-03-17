@@ -46,6 +46,7 @@ export async function databaseInit(database: SQLiteDatabase) {
         Quantidade REAL NOT NULL,
         HandleGrupo2 INTEGER,
         HandleGrupo3 INTEGER,
+        FotoBase64 TEXT,
         Observacao TEXT,
         VendaValor REAL,
         Unidade TEXT,

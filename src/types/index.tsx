@@ -34,8 +34,9 @@ export interface interface_itens {
   Quantidade: number;
   HandleGrupo2: number;
   HandleGrupo3: number | null;
+  FotoBase64: string | null;
   Observacao: string | null;
-  VendaValor: number;
+  VendaValor: number | null;
   Unidade: string;
   Plataforma: string;
 }

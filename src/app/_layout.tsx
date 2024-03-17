@@ -14,6 +14,7 @@ import {
 
 import { SQLiteProvider } from "expo-sqlite/next";
 import { databaseInit } from "@/database/databaseInit";
+import { OrderProvider } from "@/contexts/orderContext";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -32,7 +33,9 @@ export default function Layout() {
     <ThemeProvider theme={THEME}>
       <StatusBar style="light" />
       <SQLiteProvider databaseName="quickpaysoft.db" onInit={databaseInit}>
-        <Slot />
+        <OrderProvider>
+          <Slot />
+        </OrderProvider>
       </SQLiteProvider>
     </ThemeProvider>
   );
