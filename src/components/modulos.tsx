@@ -40,6 +40,9 @@ function Modulos({ data }: CardModulosProps) {
       case "CARTOES":
         router.push("/(stack)/CARTOES");
         break;
+      case "PEDIDOS":
+        router.push("/(stack)/PEDIDOS");
+        break;
       case "PRODUTOS":
         router.push("/(stack)/PRODUTOS");
         break;
@@ -78,6 +81,14 @@ function Modulos({ data }: CardModulosProps) {
         return <MaterialIcons name="table-bar" size={size} color={color} />;
       case "CARTOES":
         return <Ionicons name="newspaper-sharp" size={size} color={color} />;
+      case "PEDIDOS":
+        return (
+          <MaterialCommunityIcons
+            name="clipboard-check"
+            size={size}
+            color={color}
+          />
+        );
       case "PRODUTOS":
         return <FontAwesome6 name="boxes-stacked" size={size} color={color} />;
       case "RELATORIOS":

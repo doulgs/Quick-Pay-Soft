@@ -1,30 +1,20 @@
 import { Stack } from "expo-router/stack";
-import { Pressable } from "react-native";
-import { IconSettings } from "@/assets/icons/IconSettings";
 
 export default function AppLayout() {
   return (
     <Stack
       screenOptions={{
-        headerTitleAlign: "center",
         headerTintColor: "#FFFFFF",
         headerStyle: { backgroundColor: "#0A3750" },
-        headerTitleStyle: { fontWeight: "bold", fontSize: 28 },
+        headerTitleStyle: { fontWeight: "bold", fontSize: 24 },
       }}
     >
-      <Stack.Screen
-        name="index"
-        options={{
-          headerTitle: "Publisoft",
-          headerRight: () => (
-            <Pressable>
-              <IconSettings color="#FFF" type="preenchido" />
-            </Pressable>
-          ),
-        }}
-      />
+      <Stack.Screen name="index" options={{ headerTitle: "Quick Pay Soft" }} />
       <Stack.Screen name="CAIXA/index" options={{ headerTitle: "CAIXA" }} />
-      <Stack.Screen name="BALCAO/index" options={{ headerTitle: "BALCAO" }} />
+      <Stack.Screen
+        name="BALCAO/index"
+        options={{ headerTitle: "Escolha um grupo" }}
+      />
       <Stack.Screen name="CARTOES/index" options={{ headerTitle: "CARTOES" }} />
       <Stack.Screen name="MESAS/index" options={{ headerTitle: "MESAS" }} />
       <Stack.Screen
@@ -35,7 +25,11 @@ export default function AppLayout() {
         name="RELATORIOS/index"
         options={{ headerTitle: "RELATORIOS" }}
       />
-      <Stack.Screen name="[handleGrupo2]" options={{ headerTitle: "ITENS" }} />
+      <Stack.Screen name="PEDIDOS/index" options={{ headerTitle: "PEDIDOS" }} />
+      <Stack.Screen
+        name="[handleGrupo2]"
+        options={{ headerTitle: "Escolha seus itens" }}
+      />
     </Stack>
   );
 }

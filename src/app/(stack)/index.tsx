@@ -12,18 +12,15 @@ const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export default function Home() {
+  const modulosAtivos = MODULOS.filter((modulo) => modulo.ativo);
   return (
     <FlatList
-      data={MODULOS}
+      data={modulosAtivos}
       keyExtractor={(item, index) => String(item.id)}
       renderItem={({ item }) => (
-        <>
-          {item.ativo && (
-            <Box flex={1}>
-              <Modulos data={item} />
-            </Box>
-          )}
-        </>
+        <Box flex={1}>
+          <Modulos data={item} />
+        </Box>
       )}
       ListHeaderComponent={() => (
         <Box flex={1} m={"md"} gap="md">
