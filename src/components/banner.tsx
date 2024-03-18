@@ -1,8 +1,7 @@
-import { createBox, createText } from "@shopify/restyle";
+import { createBox } from "@shopify/restyle";
 import { ThemeProps } from "@/theme";
 
 const Box = createBox<ThemeProps>();
-const Text = createText<ThemeProps>();
 
 function Banner() {
   return (

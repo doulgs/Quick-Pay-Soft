@@ -104,11 +104,13 @@ export default function Itens() {
         renderItem={renderizar}
         estimatedItemSize={146}
       />
-      <Button
-        title="Confirmar"
-        color={THEME.colors.Alert}
-        onPress={confirmarItens}
-      />
+      <Box m={"sm"}>
+        <Button
+          title="Confirmar"
+          color={THEME.colors.Alert}
+          onPress={confirmarItens}
+        />
+      </Box>
     </Box>
   );
 }

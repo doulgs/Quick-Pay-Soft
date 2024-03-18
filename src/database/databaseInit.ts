@@ -4,6 +4,13 @@ export async function databaseInit(database: SQLiteDatabase) {
   await database.execAsync(`
       PRAGMA journal_mode = 'wal';
 
+      CREATE TABLE IF NOT EXISTS appconfig (
+        NomeSite TEXT,
+        usuariointegracao TEXT,
+        senhaintegracao TEXT,
+        Created_at DEFAULT CURRENT_TIMESTAMP
+      );
+
       CREATE TABLE IF NOT EXISTS grupos2 (
         Handle INTEGER PRIMARY KEY NOT NULL,
         Codigo TEXT NOT NULL,
@@ -27,7 +34,7 @@ export async function databaseInit(database: SQLiteDatabase) {
       CREATE TABLE IF NOT EXISTS excecoes (
         Handle INTEGER PRIMARY KEY NOT NULL,
         HandleGrupoExcecao INTEGER NOT NULL,
-        HandleGrupo2 TEXT NOT NULL,
+        HandleGrupo2 INTEGER NOT NULL,
         HandleItem TEXT,
         IteHandle TEXT,
         Ordem TEXT NOT NULL,
@@ -63,8 +70,38 @@ export async function databaseInit(database: SQLiteDatabase) {
         Ativo INTEGER,
         CodigoIntegracao TEXT,
         TipoParcelamentoPos TEXT,
-        QtdParcelas INTEGER
+        QtdParcelas INTEGER,
         Created_at DEFAULT CURRENT_TIMESTAMP
       );
+
+      CREATE TABLE IF NOT EXISTS filial (
+        Handle INTEGER PRIMARY KEY NOT NULL,
+        Nome TEXT,
+        Razao TEXT,
+        Fone TEXT,
+        CnpjCpf TEXT,
+        NomeSite TEXT,
+        Endereco TEXT,
+        Numero TEXT,
+        Complemento TEXT,
+        Bairro TEXT,
+        Cep TEXT,
+        Cidade TEXT,
+        Estado TEXT,
+        NumeroWhatsAppPedido TEXT,
+        Created_at DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS usuario (
+        Handle INTEGER PRIMARY KEY NOT NULL,
+        HandleFilial INTEGER,
+        Login TEXT,
+        Senha TEXT,
+        Nome TEXT,
+        Role TEXT,
+        Plataforma TEXT,
+        Created_at DEFAULT CURRENT_TIMESTAMP
+      );
+
     `);
 }

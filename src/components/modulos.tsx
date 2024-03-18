@@ -51,9 +51,7 @@ function Modulos({ data }: CardModulosProps) {
         break;
       default:
         // Ação padrão caso nenhum dos casos acima seja correspondido
-        // throw new Error(
-        //   "Rota não encontrada, Por favor verifique o componente Modulos."
-        // );
+        // throw new Error(   "Rota não encontrada, Por favor verifique o componente Modulos.");
         Alert.alert(
           "Rota não encontrada",
           "Por Favor entre em contato com o administrador do sistema."
