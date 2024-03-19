@@ -1,17 +1,27 @@
-import { Image, KeyboardAvoidingView, Pressable } from "react-native";
-import { createBox, createText } from "@shopify/restyle";
-import { THEME, ThemeProps } from "@/theme";
-import { Link, router } from "expo-router";
-import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
 import { IconSettings } from "@/assets/icons/IconSettings";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
+import { useAuth } from "@/contexts/authContext";
+import { THEME, ThemeProps } from "@/theme";
+import { criptografarParaMD5 } from "@/utils/helpers/criptografarParaMD5";
+import { createBox, createText } from "@shopify/restyle";
+import { Link } from "expo-router";
+import { useState } from "react";
+import { Image, KeyboardAvoidingView, Pressable } from "react-native";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export default function Inicio() {
-  function handleAcessar() {
-    router.replace("/(stack)");
+  const { acessar } = useAuth();
+  const [usuario, setUsuario] = useState("");
+  const [senha, setSenha] = useState("");
+
+  async function handleAcessar() {
+    if (usuario !== "" || senha !== "") {
+      const senhaMDS = await criptografarParaMD5(senha);
+      acessar(usuario, senhaMDS);
+    }
   }
 
   return (
@@ -36,8 +46,17 @@ export default function Inicio() {
       </Box>
 
       <Box flex={1} gap="md">
-        <Input placeholder="Usuario" />
-        <Input placeholder="Senha" />
+        <Input
+          placeholder="Usuario"
+          value={usuario}
+          onChangeText={(t) => setUsuario(t)}
+        />
+        <Input
+          placeholder="Senha"
+          value={senha}
+          onChangeText={(t) => setSenha(t)}
+          secureTextEntry
+        />
         <Button title="Acessar" onPress={handleAcessar} />
       </Box>
 

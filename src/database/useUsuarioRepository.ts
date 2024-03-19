@@ -10,6 +10,10 @@ export type UsuarioCreateDatabase = {
   Plataforma: string;
   Created_at?: string;
 };
+export type UsuarioResponseDatabase = {
+  Login: string;
+  Senha: string;
+};
 
 export function useUsuarioRepository() {
   const database = useSQLiteContext();
@@ -82,6 +86,22 @@ export function useUsuarioRepository() {
       throw error;
     }
   }
+  function search(login: string) {
+    try {
+      const statement = database.prepareSync(
+        `SELECT g.Login, g.Senha
+          FROM usuario AS g
+          WHERE Login = $login`
+      );
+      const result = statement.executeSync<UsuarioResponseDatabase>({
+        $login: login,
+      });
+      return result.getFirstSync();
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+      throw new Error(`Erro ao buscar usuário: ${error}`);
+    }
+  }
 
-  return { createOrUpdate, all };
+  return { createOrUpdate, all, search };
 }

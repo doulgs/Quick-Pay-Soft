@@ -6,7 +6,8 @@ import { ThemeProps } from "@/theme";
 
 import { MODULOS } from "@/constants/modulos";
 import { Modulos } from "@/components/Modulos";
-import { Banner } from "@/components/Banner";
+import { BannerFilial } from "@/components/BannerFilial";
+import { Empty } from "@/assets/icons/Empty";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
@@ -24,12 +25,19 @@ export default function Home() {
       )}
       ListHeaderComponent={() => (
         <Box flex={1} m={"md"} gap="md">
-          <Banner />
+          <BannerFilial />
           <Text fontSize={24} fontStyle="italic" fontWeight="bold">
             Modulos do Sistema
           </Text>
         </Box>
       )}
+      ListFooterComponent={() => {
+        return (
+          <Box flex={1} alignItems="center" marginTop="4xl">
+            <Empty />
+          </Box>
+        );
+      }}
       numColumns={2}
       showsVerticalScrollIndicator={false}
     />

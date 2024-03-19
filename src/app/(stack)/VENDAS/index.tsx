@@ -14,7 +14,7 @@ const NUMERO_DE_COLUNAS = 3;
 const LARGURA_DA_TELA = Dimensions.get("window").width;
 const LARGURA_DA_COLUNA = LARGURA_DA_TELA / NUMERO_DE_COLUNAS;
 
-export default function Balcao() {
+export default function Vendas() {
   function handleGrupo2Selected(handleGrupo2: string) {
     router.push(`/(stack)/${handleGrupo2}`);
   }

@@ -4,10 +4,10 @@ import { ThemeProps } from "@/theme";
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-export default function Relatorios() {
+export default function Resumo() {
   return (
     <Box>
-      <Text>Relatorios</Text>
+      <Text>Resumo</Text>
     </Box>
   );
 }

@@ -102,7 +102,7 @@ export function useFilialRepository() {
 
   function all() {
     try {
-      return database.getAllSync<FilialCreateDatabase>(`
+      return database.getFirstSync<FilialCreateDatabase>(`
         SELECT * FROM filial
       `);
     } catch (error) {

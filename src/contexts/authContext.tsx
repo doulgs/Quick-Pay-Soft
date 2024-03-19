@@ -5,15 +5,23 @@ import { registrarDispositivo } from "@/utils/helpers/registrarDispositivo";
 import { useFilialRepository } from "@/database/useFilialRepository";
 import { useAppConfigRepository } from "@/database/useAppConfigRepository";
 import { router } from "expo-router";
+import { useUsuarioRepository } from "@/database/useUsuarioRepository";
 
 interface AuthContextProps {
   cadastrarDispositivo: (data: cadDispositivo) => Promise<void>;
+  acessar: (usuario: string, senhaMDS: string) => void;
+  signOut: () => void;
 }
 
 interface cadDispositivo {
   usuario: string;
   senha: string;
   chaveEmpresa: string;
+}
+
+interface Usuario {
+  Login: string;
+  Senha: string;
 }
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -23,6 +31,9 @@ export const AuthContext = createContext<AuthContextProps>(
 export const AuthProvaider = ({ children }: any) => {
   const useFilial = useFilialRepository();
   const useAppConfig = useAppConfigRepository();
+  const useUsuario = useUsuarioRepository();
+
+  const [user, setUser] = useState<Usuario>({} as Usuario);
 
   async function cadastrarDispositivo({
     chaveEmpresa,
@@ -90,16 +101,45 @@ export const AuthProvaider = ({ children }: any) => {
   }
 
   async function gravarUsuarios(retorno: any) {
-    //##TODO CONTINUAR AQUI GRAVAR OS USUARIOS
-    console.log("gravarUsuarios", Array.from(retorno).length);
+    const usuarios = Array.from(retorno).filter(
+      (retorno: any) => retorno.Solucao === "POS"
+    );
+
+    usuarios.forEach(async (usuario: any) => {
+      await useUsuario.createOrUpdate({
+        Handle: usuario.Handle,
+        HandleFilial: usuario.HandleFilial,
+        Login: usuario.Login,
+        Nome: usuario.Nome,
+        Plataforma: usuario.Plataforma,
+        Role: usuario.Role,
+        Senha: usuario.Senha,
+      });
+    });
   }
 
-  async function acessar(login: string, senha: string) {}
+  async function acessar(usuario: string, senhaMDS: string) {
+    const retorno = useUsuario.search(usuario);
+    if (retorno) {
+      if (retorno.Login === usuario && retorno.Senha === senhaMDS) {
+        router.replace("/(stack)");
+      }
+    }
+  }
 
-  async function signOut() {}
+  async function signOut() {
+    Alert.alert("Sair", `Deseja realmente finalizar a aplicação?`, [
+      {
+        text: "Não",
+        onPress: () => {},
+        style: "cancel",
+      },
+      { text: "SIM", onPress: () => router.replace("/") },
+    ]);
+  }
 
   return (
-    <AuthContext.Provider value={{ cadastrarDispositivo }}>
+    <AuthContext.Provider value={{ cadastrarDispositivo, acessar, signOut }}>
       {children}
     </AuthContext.Provider>
   );

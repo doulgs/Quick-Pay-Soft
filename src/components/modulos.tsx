@@ -31,8 +31,8 @@ function Modulos({ data }: CardModulosProps) {
       case "CAIXA":
         router.push("/(stack)/CAIXA");
         break;
-      case "BALCAO":
-        router.push("/(stack)/BALCAO");
+      case "VENDAS":
+        router.push("/(stack)/VENDAS");
         break;
       case "MESAS":
         router.push("/(stack)/MESAS");
@@ -46,8 +46,8 @@ function Modulos({ data }: CardModulosProps) {
       case "PRODUTOS":
         router.push("/(stack)/PRODUTOS");
         break;
-      case "RELATORIOS":
-        router.push("/(stack)/RELATORIOS");
+      case "RESUMO":
+        router.push("/(stack)/RESUMO");
         break;
       default:
         // Ação padrão caso nenhum dos casos acima seja correspondido
@@ -71,7 +71,7 @@ function Modulos({ data }: CardModulosProps) {
         return (
           <MaterialCommunityIcons name="storefront" size={size} color={color} />
         );
-      case "BALCAO":
+      case "VENDAS":
         return (
           <MaterialIcons name="shopping-basket" size={size} color={color} />
         );
@@ -89,7 +89,7 @@ function Modulos({ data }: CardModulosProps) {
         );
       case "PRODUTOS":
         return <FontAwesome6 name="boxes-stacked" size={size} color={color} />;
-      case "RELATORIOS":
+      case "RESUMO":
         return <FontAwesome name="pie-chart" size={size} color={color} />;
       default:
         return <MaterialIcons name="error-outline" size={size} color={color} />;
