@@ -13,51 +13,71 @@ export async function databaseInit(database: SQLiteDatabase) {
 
       CREATE TABLE IF NOT EXISTS grupos2 (
         Handle INTEGER PRIMARY KEY NOT NULL,
-        Codigo TEXT NOT NULL,
-        Nome TEXT NOT NULL,
-        Reduzido TEXT NOT NULL,
-        FotoBase64 TEXT NOT NULL,
-        PossuiComposicao INTEGER NOT NULL,
-        Plataforma TEXT NOT NULL,
+        Codigo TEXT,
+        Nome TEXT,
+        Reduzido TEXT,
+        FotoBase64 TEXT,
+        PossuiComposicao INTEGER,
+        Plataforma TEXT,
+        Created_at DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS grupos3 (
+        Handle INTEGER PRIMARY KEY NOT NULL,
+        Codigo TEXT,
+        Nome TEXT,
+        Nome2 TEXT,
+        Reduzido TEXT,
+        QuantidadeItensComposicao REAL,
+        Plataforma TEXT,
+        Created_at DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS execaoAuto (
+        Handle INTEGER PRIMARY KEY NOT NULL,
+        HandleExcecao INTEGER,
+        HandleItem INTEGER,
+        Quantidade REAL,
+        Plataforma TEXT,
         Created_at DEFAULT CURRENT_TIMESTAMP
       );
 
       CREATE TABLE IF NOT EXISTS grupoExcecoes (
         Handle INTEGER PRIMARY KEY NOT NULL,
-        HandleGrupo2 INTEGER NOT NULL,
-        Ordem TEXT NOT NULL,
-        Descricao TEXT NOT NULL,
-        Plataforma TEXT NOT NULL,
+        HandleGrupo2 INTEGER,
+        Ordem TEXT,
+        Descricao TEXT,
+        Plataforma TEXT,
         Created_at DEFAULT CURRENT_TIMESTAMP
       );
 
       CREATE TABLE IF NOT EXISTS excecoes (
         Handle INTEGER PRIMARY KEY NOT NULL,
-        HandleGrupoExcecao INTEGER NOT NULL,
-        HandleGrupo2 INTEGER NOT NULL,
+        HandleGrupoExcecao INTEGER,
+        HandleGrupo2 INTEGER,
         HandleItem TEXT,
         IteHandle TEXT,
-        Ordem TEXT NOT NULL,
-        Excecao TEXT NOT NULL,
-        Plataforma TEXT NOT NULL,
+        Ordem TEXT,
+        Excecao TEXT,
+        Plataforma TEXT,
         Created_at DEFAULT CURRENT_TIMESTAMP
       );
 
       CREATE TABLE IF NOT EXISTS itens (
         Handle INTEGER PRIMARY KEY NOT NULL,
-        Codigo TEXT NOT NULL,
-        Descricao TEXT NOT NULL,
+        Codigo TEXT,
+        Descricao TEXT,
         DescLonga TEXT,
         DescReduzida TEXT,
-        ComposicaoBarra TEXT NOT NULL,
-        Quantidade REAL NOT NULL,
+        ComposicaoBarra TEXT,
+        Quantidade REAL,
         HandleGrupo2 INTEGER,
         HandleGrupo3 INTEGER,
         FotoBase64 TEXT,
         Observacao TEXT,
         VendaValor REAL,
         Unidade TEXT,
-        Plataforma TEXT NOT NULL,
+        Plataforma TEXT,
         Created_at DEFAULT CURRENT_TIMESTAMP
       );
 

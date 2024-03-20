@@ -6,11 +6,13 @@ import { Pressable } from "react-native";
 import { IconSync } from "@/assets/icons/IconSync";
 import { IconSignOut } from "@/assets/icons/IconSignOut";
 import { useAuth } from "@/contexts/authContext";
+import { router } from "expo-router";
 
 const Box = createBox<ThemeProps>();
 
 export default function AppLayout() {
   const { signOut } = useAuth();
+
   return (
     <Stack
       screenOptions={{
@@ -26,7 +28,7 @@ export default function AppLayout() {
           headerRight: () => {
             return (
               <Box flexDirection="row" gap="lg">
-                <Pressable>
+                <Pressable onPress={() => router.push("/(stack)/CONFIG")}>
                   <IconSync color={THEME.colors.white} />
                 </Pressable>
                 <Pressable onPress={signOut}>
@@ -53,6 +55,10 @@ export default function AppLayout() {
       <Stack.Screen
         name="[handleGrupo2]"
         options={{ headerTitle: "Escolha seus itens" }}
+      />
+      <Stack.Screen
+        name="CONFIG/index"
+        options={{ headerTitle: "Configurações" }}
       />
     </Stack>
   );

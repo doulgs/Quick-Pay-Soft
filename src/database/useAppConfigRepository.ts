@@ -58,12 +58,14 @@ export function useAppConfigRepository() {
 
   function all() {
     try {
-      return database.getAllSync<AppConfigCreateDatabase>(
-        `SELECT * FROM appconfig`
+      const statement = database.prepareSync(
+        `SELECT g.NomeSite, g.usuariointegracao, g.senhaintegracao FROM appconfig AS g`
       );
+      const result = statement.executeSync<AppConfigCreateDatabase>();
+      return result.getFirstSync();
     } catch (error) {
-      console.error("Erro ao obter todos os registros:", error);
-      throw error;
+      console.error("Erro ao buscar appconfig:", error);
+      throw new Error(`Erro ao buscar appconfig: ${error}`);
     }
   }
 

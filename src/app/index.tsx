@@ -16,12 +16,15 @@ export default function Inicio() {
   const { acessar } = useAuth();
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function handleAcessar() {
+    setLoading(true);
     if (usuario !== "" || senha !== "") {
       const senhaMDS = await criptografarParaMD5(senha);
       acessar(usuario, senhaMDS);
     }
+    setLoading(false);
   }
 
   return (
@@ -57,7 +60,7 @@ export default function Inicio() {
           onChangeText={(t) => setSenha(t)}
           secureTextEntry
         />
-        <Button title="Acessar" onPress={handleAcessar} />
+        <Button title="Acessar" onPress={handleAcessar} disabled={loading} />
       </Box>
 
       <Box position="absolute" top={"7%"} right={"7%"}>

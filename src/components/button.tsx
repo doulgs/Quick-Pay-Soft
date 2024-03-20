@@ -16,15 +16,22 @@ interface Props extends TouchableOpacityProps {
   isLoading?: boolean;
 }
 
-const Button: React.FC<Props> = ({ title, color, isLoading, ...rest }) => {
+const Button: React.FC<Props> = ({
+  title,
+  color,
+  isLoading,
+  disabled,
+  ...rest
+}) => {
+  const backcolor = disabled ? THEME.colors.gray : THEME.colors.primary_900;
   return (
-    <TouchableOpacity activeOpacity={0.9} disabled={isLoading} {...rest}>
+    <TouchableOpacity activeOpacity={0.7} disabled={isLoading} {...rest}>
       <Box
         borderRadius={8}
         alignItems="center"
         paddingVertical="sm"
         justifyContent="center"
-        style={{ backgroundColor: color ? color : THEME.colors.primary_900 }}
+        style={{ backgroundColor: backcolor }}
       >
         {isLoading ? (
           <ActivityIndicator color={"#FFF"} size={22} />

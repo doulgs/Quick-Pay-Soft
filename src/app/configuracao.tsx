@@ -54,13 +54,13 @@ export default function Configuracao() {
   }, []);
 
   function handleCadastrarDispositivo() {
+    setLoading(true);
     if (chaveEmpresa !== "" && usuario !== "" && senha !== "") {
-      setLoading(true);
       cadastrarDispositivo({ chaveEmpresa, usuario, senha });
-      setLoading(false);
     } else {
       alert("Preencha todos os campos");
     }
+    setLoading(false);
   }
 
   function handleLimparDados() {
@@ -134,6 +134,7 @@ export default function Configuracao() {
                 title="Cadastrar Dispositivo"
                 onPress={handleCadastrarDispositivo}
                 isLoading={loading}
+                disabled={loading}
               />
               <Button
                 title="Limpar Banco de Dados"

@@ -102,12 +102,12 @@ export function useFilialRepository() {
 
   function all() {
     try {
-      return database.getFirstSync<FilialCreateDatabase>(`
-        SELECT * FROM filial
-      `);
+      const statement = database.prepareSync(`SELECT * FROM filial`);
+      const result = statement.executeSync<FilialCreateDatabase>();
+      return result.getFirstSync();
     } catch (error) {
-      console.error("Erro ao obter todos os registros:", error);
-      throw error;
+      console.error("Erro ao buscar filial:", error);
+      throw new Error(`Erro ao buscar filial: ${error}`);
     }
   }
 

@@ -5,6 +5,7 @@ import {
   FilialCreateDatabase,
   useFilialRepository,
 } from "@/database/useFilialRepository";
+import { ScrollView } from "react-native";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
@@ -28,6 +29,7 @@ function BannerFilial() {
   }, []);
   return (
     <Box
+      flex={1}
       backgroundColor="white"
       width={"auto"}
       height={150}
@@ -48,9 +50,6 @@ function BannerFilial() {
       </Text>
       <Text>
         <Text fontWeight="bold">CNPJ/CPF:</Text> {filial.CnpjCpf}
-      </Text>
-      <Text>
-        <Text fontWeight="bold">Contato:</Text> {filial.Fone}
       </Text>
       <Text>
         <Text fontWeight="bold">Endereço:</Text> {filial.Endereco} -{" "}

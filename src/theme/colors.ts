@@ -6,6 +6,8 @@ export const colors = {
   white: "#FFFFFF",
   almostWhite: "rgb(242, 242, 242)",
 
+  gray: "#595959",
+
   Error: "#ff5252",
   Alert: "#dba358",
   Success: "#4caf50",
